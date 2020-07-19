@@ -1,0 +1,25 @@
+Daily notes:
+
+API key: 126d5b4f5620fdea318f72c06e895f9a4cf90948177ff40fa73cf824d8128d24
+
+
+
+<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+
+<script>
+  callFrame = window.DailyIframe.createFrame();
+  callFrame.join({ url: 'https://msj.daily.co/hello'});
+</script>
+
+
+
+to host locally: https://www.pythonforbeginners.com/modules-in-python/how-to-use-simplehttpserver
+
+	python -m SimpleHTTPServer 8080
+
+to ngrok: ./ngrok http 8080
+1) ./ngrok
+2) ./ngrok http 8080
+
+
+https://stackoverflow.com/questions/40858456/how-to-display-a-javascript-var-in-html-body

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <script crossorigin src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+    <script>
+      $(document).ready(function(){
+        callFrame = window.DailyIframe.createFrame();
+
+      callFrame.join({ url: 'https://msj.daily.co/hello' });
+    
+      callFrame.on('joining-meeting', (event) => { 
+               console.log('joining-meeting event', event);
+            })
+
+      callFrame.on('joined-meeting', (event) => { 
+               console.log('joined-meeting', event);
+               var host = event.participants.local.user_id;
+               console.log('Your are the host and your id is ' + host);
+            })
+
+      callFrame.on('participant-joined', (event) => { 
+               console.log('Somebody else is here act normal!', event);
+            })   
+
+      callFrame.on('participant-updated', (event) => { 
+               if (event.participant.video == true) {
+                  console.log(event.participant.user_id, 'updated their video status to', event.participant.video);
+                  $('#participants-table tr:last').after('<tr><td>'+event.participant.user_id+'</td><td>'+event.participant.video+'</td></tr>');
+               }
+           }) 
+      })
+      
+      </script>
+  </head>
+
+  <body>
+  	<p>Marco's Room</p>
+
+    <div>
+      <table id="participants-table">
+        <tr>
+          <th>User Id</th>
+          <th>Camera On / Hand Raise</th>
+        </tr>
+      </table>
+    </div>
+
+  </body>
+</html>
