@@ -8,31 +8,32 @@
       $(document).ready(function(){
         callFrame = window.DailyIframe.createFrame();
 
-      callFrame.join({ url: 'https://msj.daily.co/hello' });
+        callFrame.join({ url: 'https://msj.daily.co/hello' });
     
-      callFrame.on('joining-meeting', (event) => { 
+        callFrame.on('joining-meeting', (event) => { 
                console.log('joining-meeting event', event);
             })
 
-      callFrame.on('joined-meeting', (event) => { 
+        callFrame.on('joined-meeting', (event) => { 
                console.log('joined-meeting', event);
                var host = event.participants.local.user_id;
                console.log('Your are the host and your id is ' + host);
             })
 
-      callFrame.on('participant-joined', (event) => { 
-               console.log('Somebody else is here act normal!', event);
+        callFrame.on('participant-joined', (event) => { 
+               //console.log('Somebody else is here act normal!', event);
+               var participant_id = event.participant.user_id;
+               var video_status = event.participant.video;
+               $('#participants-table tr:last').after('<tr id='+participant_id+'><td>'+participant_id+'</td><td>'+video_status+'</td></tr>');
             })   
 
-      callFrame.on('participant-updated', (event) => { 
-               var video_status = event.participant.video;////make variables for video and user id (marco)
+        callFrame.on('participant-updated', (event) => { 
                var participant_id = event.participant.user_id;
-               if (event.participant.video == true) {
-                  console.log(participant_id, 'updated their video status to', video_status);
-                  $('#participants-table tr:last').after('<tr><td>'+event.participant.user_id+'</td><td>'+event.participant.video+'</td></tr>');
-               }
+               var video_status = event.participant.video;
+               console.log(participant_id, 'updated their video status to', video_status);
+               
            }) 
-      })
+        })
       
       </script>
   </head>
