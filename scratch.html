@@ -25,8 +25,10 @@
             })   
 
       callFrame.on('participant-updated', (event) => { 
+               var video_status = event.participant.video;////make variables for video and user id (marco)
+               var participant_id = event.participant.user_id;
                if (event.participant.video == true) {
-                  console.log(event.participant.user_id, 'updated their video status to', event.participant.video);
+                  console.log(participant_id, 'updated their video status to', video_status);
                   $('#participants-table tr:last').after('<tr><td>'+event.participant.user_id+'</td><td>'+event.participant.video+'</td></tr>');
                }
            }) 
