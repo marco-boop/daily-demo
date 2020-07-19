@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <link rel="stylesheet" type="text/css" href="scratch.css">
     <script crossorigin src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
     <script>
@@ -30,8 +30,8 @@
         callFrame.on('participant-updated', (event) => { 
                var participant_id = event.participant.user_id;
                var video_status = event.participant.video;
-               console.log(participant_id, 'updated their video status to', video_status);
-               
+               console.log(participant_id, 'updated their video status to', video_status);//this works for sure
+               $('#participants-table #'+participant_id+'').html('<tr id='+participant_id+'><td>'+participant_id+'</td><td>'+video_status+'</td></tr>');
            }) 
         })
       
